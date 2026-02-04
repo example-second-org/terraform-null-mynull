@@ -74,8 +74,8 @@ resource "null_resource" "null3" {
   }
 }
 
-output "null3" {
-  value = null_resource.null3.*.id
+output "branch" {
+  value = "branch-2"
 }
 
 resource "random_pet" "pet3" {
