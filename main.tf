@@ -84,5 +84,5 @@ resource "random_pet" "pet3" {
 }
 
 output "version" {
-  value = 3
+  value = 4
 }
