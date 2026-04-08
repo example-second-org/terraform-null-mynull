@@ -6,12 +6,6 @@ terraform {
     null = {
       source  = "hashicorp/null"
     }
-    aws = {
-      source  = "hashicorp/aws"
-    }
-    azurerm = {
-      source = "hashicorp/azurerm"
-    }
   }
 }
 
@@ -21,16 +15,12 @@ terraform {
 
 
 variable "mycount" {
-  default = 3
+  default = 2
 }
 
 resource "random_pet" "pet1" {
   prefix = timestamp()
-  length = 3
-}
-
-output "pet1" {
-  value = random_pet.pet1.*.id
+  length = 4
 }
 
 resource "null_resource" "null1" {
@@ -43,10 +33,6 @@ resource "null_resource" "null1" {
   }
 }
 
-output "null1" {
-  value = null_resource.null1.*.id
-}
-
 resource "null_resource" "null2" {
   count = var.mycount
   triggers = {
@@ -54,17 +40,9 @@ resource "null_resource" "null2" {
   }
 }
 
-output "null2" {
-  value = null_resource.null2.*.id
-}
-
 resource "random_pet" "pet2" {
   count  = var.mycount
   prefix = timestamp()
-}
-
-output "pet2" {
-  value = random_pet.pet2.*.id
 }
 
 resource "null_resource" "null3" {
@@ -74,15 +52,22 @@ resource "null_resource" "null3" {
   }
 }
 
-output "null3" {
-  value = null_resource.null3.*.id
-}
 
 resource "random_pet" "pet3" {
   count  = var.mycount
   prefix = timestamp()
 }
 
+
+
 output "pet3" {
   value = random_pet.pet3.*.id
+}
+
+output "null3" {
+  value = null_resource.null3.*.id
+}
+
+output "version" {
+  value = 11
 }
